@@ -1,0 +1,17 @@
+- name: Swarm manager join
+  when: inventory_hostname in groups['manager'] and inventory_hostname != groups['manager'][0]
+  community.docker.docker_swarm:
+      state: join
+      timeout: 60
+      advertise_addr: "{{ ansible_default_ipv4.address }}:2377"
+      join_token: "{{ hostvars[groups['manager'][0]].__output_swarm.swarm_facts.JoinTokens.Manager }}"
+      remote_addrs: "{{ hostvars[groups['manager'][0]].ansible_default_ipv4.address }}"
+
+- name: Swarm worker join
+  when: inventory_hostname not in groups['manager']
+  community.docker.docker_swarm:
+      state: join
+      timeout: 60
+      advertise_addr: "{{ ansible_default_ipv4.address }}:2377"
+      join_token: "{{ hostvars[groups['manager'][0]].__output_swarm.swarm_facts.JoinTokens.Worker }}"
+      remote_addrs: "{{ hostvars[groups['manager'][0]].ansible_default_ipv4.address }}"

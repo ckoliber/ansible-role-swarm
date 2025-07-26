@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ansible temporary files
+*.retry
+*.log
+*.tar.gz
+
+# Editor & system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Role-specific exclusions
+collections/
+roles/  # ignore if you install roles locally
+.env
+.venv/
+.envrc
+
+# Galaxy and test artifacts
+*.galaxy_install_info
+test/output/
+test/tmp/
+
+# Virtual environments
+*.egg-info/
+.eggs/
+dist/
+build/

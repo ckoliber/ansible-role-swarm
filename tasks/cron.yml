@@ -1,0 +1,8 @@
+- name: Swarm cronjobs
+  ansible.builtin.copy:
+      content: |
+          00 20 * * 6 root (docker system prune -af)
+      dest: /etc/cron.d/docker
+      owner: root
+      group: root
+      mode: "0644"
