@@ -1,0 +1,17 @@
+- name: Include Docker installation tasks
+  ansible.builtin.include_tasks: docker.yml
+
+- name: Include swarm init task
+  ansible.builtin.include_tasks: init.yml
+
+- name: Include swarm join task
+  ansible.builtin.include_tasks: join.yml
+
+- name: Include swarm network creation
+  ansible.builtin.include_tasks: network.yml
+
+- name: Include swarm shared storage setup
+  ansible.builtin.include_tasks: storage.yml
+
+- name: Include swarm cleanup cronjobs
+  ansible.builtin.include_tasks: cron.yml
