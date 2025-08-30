@@ -13,7 +13,15 @@ galaxy_info:
         - name: Ubuntu
           versions: ["all"]
         - name: EL
-          versions: ["7", "8"]
+          versions: ["7", "8", "9"]
+        - name: Fedora
+          versions: ["all"]
+        - name: ArchLinux
+          versions: ["all"]
+        - name: Alpine
+          versions: ["all"]
+        - name: SLES
+          versions: ["all"]
 
     galaxy_tags:
         - docker

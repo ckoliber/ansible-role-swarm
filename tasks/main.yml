@@ -1,17 +1,15 @@
-- name: Include Docker installation tasks
-  ansible.builtin.include_tasks: docker.yml
+- name: Load OS family specific variables
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+      params:
+          paths: [vars]
+          files:
+              - "{{ ansible_distribution }}.yml"
+              - "{{ ansible_os_family }}.yml"
+              - main.yml
 
-- name: Include swarm init task
-  ansible.builtin.include_tasks: init.yml
+# - name: Include Swarm installation tasks
+#   ansible.builtin.include_tasks: install.yml
 
-- name: Include swarm join task
-  ansible.builtin.include_tasks: join.yml
-
-- name: Include swarm network creation
-  ansible.builtin.include_tasks: network.yml
-
-- name: Include swarm shared storage setup
-  ansible.builtin.include_tasks: storage.yml
-
-- name: Include swarm cleanup cronjobs
-  ansible.builtin.include_tasks: cron.yml
+- name: Include Swarm configuration tasks
+  ansible.builtin.include_tasks: config.yml

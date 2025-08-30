@@ -32,3 +32,4 @@ test/tmp/
 .eggs/
 dist/
 build/
+tests/

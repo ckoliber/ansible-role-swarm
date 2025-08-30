@@ -1,0 +1,53 @@
+- name: Swarm leader
+  ansible.builtin.set_fact:
+      swarm_leader: "{{ groups[swarm_manager][0] }}"
+
+- name: Swarm initialize
+  when: inventory_hostname == swarm_leader
+  register: swarm_tokens
+  changed_when: false
+  ansible.builtin.shell:
+      executable: /bin/bash
+      cmd: |
+          set -o pipefail
+          docker swarm init \
+            --advertise-addr "{{ ansible_default_ipv4.address }}:{{ swarm_port }}" \
+            {% if swarm_force %}--force-new-cluster{% endif %} > /dev/null 2>&1 || true
+          docker swarm join-token manager -q
+          docker swarm join-token worker -q
+
+- name: Swarm nodes clean
+  when: inventory_hostname == swarm_leader and swarm_clean
+  changed_when: false
+  ansible.builtin.shell:
+      executable: /bin/bash
+      cmd: |
+          set -o pipefail
+          docker node ls | awk '/Down|Drain/ {print $1}' | while read NODE; do
+            docker node rm $NODE --force
+          done
+
+- name: Swarm nodes join
+  when: inventory_hostname != swarm_leader
+  changed_when: false
+  ansible.builtin.shell:
+      executable: /bin/bash
+      cmd: |
+          set -o pipefail
+          docker swarm join \
+            --advertise-addr "{{ ansible_default_ipv4.address }}:{{ swarm_port }}" \
+            {% if inventory_hostname in groups[swarm_manager] %}
+            --token "{{ hostvars[swarm_leader].swarm_tokens.stdout_lines[0] }}" \
+            {% else %}
+            --token "{{ hostvars[swarm_leader].swarm_tokens.stdout_lines[1] }}" \
+            {% endif %}
+            {{ hostvars[swarm_leader].ansible_default_ipv4.address }}:{{ swarm_port }} || true
+
+- name: Swarm internal network
+  when: inventory_hostname == swarm_leader
+  changed_when: false
+  ansible.builtin.shell:
+      executable: /bin/bash
+      cmd: |
+          set -o pipefail
+          docker network create internal --driver=overlay --subnet={{ swarm_cidr }} || true
