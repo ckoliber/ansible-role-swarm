@@ -1,5 +1,0 @@
-- name: Swarm cluster storage
-  ansible.builtin.file:
-      path: /mnt/share
-      state: directory
-      mode: "0755"

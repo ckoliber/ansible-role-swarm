@@ -1,0 +1,7 @@
+- name: Include Docker installation role
+  ansible.builtin.include_role:
+      name: geerlingguy.docker
+# - name: Install additional Docker packages
+#   ansible.builtin.package:
+#       name: [python3-jsondiff, python3-docker]
+#       state: present

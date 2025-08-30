@@ -1,9 +1,14 @@
-docker_edition: "ce"
-docker_packages:
-    - docker-{{ docker_edition }}
-    - docker-{{ docker_edition }}-cli
-    - docker-{{ docker_edition }}-rootless-extras
-    - docker-buildx-plugin
-    - python3-jsondiff
-    - python3-docker
-    - containerd.io
+# Swarm internal network CIDR
+swarm_cidr: 10.40.0.0/16
+
+# Swarm listening port number
+swarm_port: 2377
+
+# Swarm force cluster initialization
+swarm_force: false
+
+# Swarm clean down/drain nodes
+swarm_clean: false
+
+# Swarm manager group name
+swarm_manager: manager

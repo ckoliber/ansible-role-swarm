@@ -1,7 +1,0 @@
-- name: Swarm cluster network
-  when: inventory_hostname == groups['manager'][0]
-  community.docker.docker_network:
-      name: cluster
-      driver: overlay
-      ipam_config:
-          - subnet: 10.41.0.0/16
