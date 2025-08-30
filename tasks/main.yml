@@ -8,8 +8,8 @@
               - "{{ ansible_os_family }}.yml"
               - main.yml
 
-# - name: Include Swarm installation tasks
-#   ansible.builtin.include_tasks: install.yml
+- name: Include Swarm installation tasks
+  ansible.builtin.include_tasks: install.yml
 
 - name: Include Swarm configuration tasks
   ansible.builtin.include_tasks: config.yml
