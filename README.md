@@ -1,44 +1,62 @@
 # Ansible Role Swarm
 
-An Ansible role to automatically set up a full [Docker Swarm](https://docs.docker.com/engine/swarm/) cluster with managers and workers, shared overlay network, and automatic cleanup cronjobs.
+This Ansible role sets up a Docker Swarm cluster on Linux hosts. It installs Docker, initializes the Swarm on the first manager, joins managers/workers, and creates an overlay network for services.
 
-This role is designed to work in combination with the popular [`geerlingguy.docker`](https://galaxy.ansible.com/geerlingguy/docker) role for installing Docker.
+## Features
 
----
+-   Installs Docker via `geerlingguy.docker`
+-   Initializes the Swarm on the first host in the `manager` group
+-   Joins additional managers and workers automatically
+-   Creates an overlay network named `internal` with a configurable subnet
+-   Optional cleanup of nodes in Down/Drain state
+-   Idempotent and safe to run multiple times
 
-## 🔧 Features
+## Requirements
 
--   Installs Docker Engine using `geerlingguy.docker`
--   Initializes the Swarm on the first manager node
--   Automatically joins additional manager and worker nodes
--   Creates a shared overlay network for inter-container communication
--   Sets up a shared directory for volumes or backups (`/mnt/share`)
--   Adds a weekly cronjob to prune unused Docker resources
+-   Ansible 2.9+
+-   Linux (Debian/Ubuntu/RHEL/Alma/Rocky/Fedora/Arch/Alpine/SUSE)
+-   Galaxy role available: `geerlingguy.docker`
 
----
+## Role Variables
 
-## 🧱 Requirements
+Variables can be set in your playbook or inventory. See `defaults/main.yml` for all options.
+OS-family specific variables can be defined in `vars/<Family>.yml` and are loaded automatically.
 
--   Ansible >= 2.9
--   Docker-compatible Linux OS (Debian, Ubuntu, CentOS, etc.)
--   Root or sudo privileges
--   Python packages: `docker`, `jsondiff` (installed by this role)
+| Variable        | Description                                     | Default        |
+| --------------- | ----------------------------------------------- | -------------- |
+| `swarm_cidr`    | Overlay network CIDR for the `internal` network | `10.40.0.0/16` |
+| `swarm_port`    | Swarm listen/advertise port                     | `2377`         |
+| `swarm_force`   | Force new cluster on initialization             | `false`        |
+| `swarm_clean`   | Remove nodes in Down/Drain state (leader only)  | `false`        |
+| `swarm_manager` | Inventory group name that contains managers     | `manager`      |
 
----
+Example inventory (first manager becomes leader):
 
-## 📦 Role Variables
+```ini
+[manager]
+manager-1
+
+[workers]
+worker-1
+worker-2
+```
+
+Example playbook:
 
 ```yaml
-# Docker edition to install
-docker_edition: "ce"
-
-# List of required Docker-related packages
-docker_packages:
-    - docker-{{ docker_edition }}
-    - docker-{{ docker_edition }}-cli
-    - docker-{{ docker_edition }}-rootless-extras
-    - docker-buildx-plugin
-    - python3-jsondiff
-    - python3-docker
-    - containerd.io
+- hosts: all
+  become: true
+  roles:
+      - ckoliber.swarm
 ```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+This project is licensed under the [MIT](LICENSE.md).  
+Copyright (c) KoLiBer (koliberr136a1@gmail.com)
