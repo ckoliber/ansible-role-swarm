@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/ckoliber/ansible-role-swarm/compare/1.0.0...1.1.0) (2025-08-30)
+
+
+### Bug Fixes
+
+* remove bash requirement in shell module ([79f68be](https://github.com/ckoliber/ansible-role-swarm/commit/79f68be9c71fc38ef03e07f55eafe2e644bec46f))
+
+
+### Features
+
+* add bash based swarm configs ([2ef25d9](https://github.com/ckoliber/ansible-role-swarm/commit/2ef25d92245b377b73b3de5cc15bd978cd1c7ca6))
+* enable all tasks ([597d82e](https://github.com/ckoliber/ansible-role-swarm/commit/597d82ead4cfb8da728921bede19ca71520ecb44))
+
 # 1.0.0 (2025-07-26)
 
 
