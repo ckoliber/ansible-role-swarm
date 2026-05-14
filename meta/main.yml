@@ -1,33 +1,33 @@
 galaxy_info:
-    author: ckoliber
-    namespace: ckoliber
-    role_name: swarm
-    description: Setup a Docker Swarm cluster using Ansible
-    company: KoLiBer
-    license: MIT
-    min_ansible_version: "2.9"
+  author: ckoliber
+  namespace: ckoliber
+  role_name: swarm
+  description: Setup a Docker Swarm cluster using Ansible
+  company: KoLiBer
+  license: MIT
+  min_ansible_version: "2.9"
 
-    platforms:
-        - name: Debian
-          versions: ["all"]
-        - name: Ubuntu
-          versions: ["all"]
-        - name: EL
-          versions: ["7", "8", "9"]
-        - name: Fedora
-          versions: ["all"]
-        - name: ArchLinux
-          versions: ["all"]
-        - name: Alpine
-          versions: ["all"]
-        - name: SLES
-          versions: ["all"]
+  platforms:
+    - name: Debian
+      versions: ["all"]
+    - name: Ubuntu
+      versions: ["all"]
+    - name: EL
+      versions: ["7", "8", "9"]
+    - name: Fedora
+      versions: ["all"]
+    - name: ArchLinux
+      versions: ["all"]
+    - name: Alpine
+      versions: ["all"]
+    - name: SLES
+      versions: ["all"]
 
-    galaxy_tags:
-        - docker
-        - swarm
-        - container
-        - orchestration
-        - cluster
+  galaxy_tags:
+    - docker
+    - swarm
+    - container
+    - orchestration
+    - cluster
 
 dependencies: []
