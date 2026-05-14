@@ -1,0 +1,16 @@
+[env]
+GIT_CLIFF_CONFIG = "{{ config_root }}/.github/cliff.toml"
+
+[tools]
+gh = "2.92.0"
+uv = "0.11.14"
+git-cliff = "2.13.1"
+"pipx:ansible" = "13.6.0"
+"pipx:ansible-core" = "2.20.5"
+"pipx:ansible-lint" = "26.4.0"
+
+[tasks.test]
+run = "ansible-lint ."
+
+[tasks.release]
+file = ".github/release.sh"
