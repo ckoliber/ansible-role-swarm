@@ -4,18 +4,18 @@ This Ansible role sets up a Docker Swarm cluster on Linux hosts. It installs Doc
 
 ## Features
 
--   Installs Docker via `geerlingguy.docker`
--   Initializes the Swarm on the first host in the `manager` group
--   Joins additional managers and workers automatically
--   Creates an overlay network named `internal` with a configurable subnet
--   Optional cleanup of nodes in Down/Drain state
--   Idempotent and safe to run multiple times
+- Installs Docker via `geerlingguy.docker`
+- Initializes the Swarm on the first host in the `manager` group
+- Joins additional managers and workers automatically
+- Creates an overlay network named `internal` with a configurable subnet
+- Optional cleanup of nodes in Down/Drain state
+- Idempotent and safe to run multiple times
 
 ## Requirements
 
--   Ansible 2.9+
--   Linux (Debian/Ubuntu/RHEL/Alma/Rocky/Fedora/Arch/Alpine/SUSE)
--   Galaxy role available: `geerlingguy.docker`
+- Ansible 2.9+
+- Linux (Debian/Ubuntu/RHEL/Alma/Rocky/Fedora/Arch/Alpine/SUSE)
+- Galaxy role available: `geerlingguy.docker`
 
 ## Role Variables
 
@@ -47,7 +47,7 @@ Example playbook:
 - hosts: all
   become: true
   roles:
-      - ckoliber.swarm
+    - ckoliber.swarm
 ```
 
 ## Contributing
@@ -59,4 +59,4 @@ Please make sure to update tests as appropriate.
 ## License
 
 This project is licensed under the [MIT](LICENSE.md).  
-Copyright (c) KoLiBer (koliberr136a1@gmail.com)
+Copyright (c) Hoomaan (ckoliber@gmail.com)
