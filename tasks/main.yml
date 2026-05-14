@@ -1,12 +1,12 @@
 - name: Load OS family specific variables
   ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
-      params:
-          paths: [vars]
-          files:
-              - "{{ ansible_distribution }}.yml"
-              - "{{ ansible_os_family }}.yml"
-              - main.yml
+    params:
+      paths: [vars]
+      files:
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+        - main.yml
 
 - name: Include Swarm installation tasks
   ansible.builtin.include_tasks: install.yml
