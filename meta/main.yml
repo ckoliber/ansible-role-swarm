@@ -3,7 +3,7 @@ galaxy_info:
   namespace: ckoliber
   role_name: swarm
   description: Setup a Docker Swarm cluster using Ansible
-  company: KoLiBer
+  company: Hoomaan
   license: MIT
   min_ansible_version: "2.9"
 
