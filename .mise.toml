@@ -7,7 +7,7 @@ uv = "0.11.26"
 git-cliff = "2.13.1"
 "pipx:ansible" = "13.8.0"
 "pipx:ansible-core" = "2.21.1"
-"pipx:ansible-lint" = "26.4.0"
+"pipx:ansible-lint" = "26.6.0"
 
 [tasks.test]
 run = "ansible-lint ."
