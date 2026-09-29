@@ -4,7 +4,7 @@ GIT_CLIFF_CONFIG = "{{ config_root }}/.github/cliff.toml"
 [tools]
 gh = "2.101.0"
 uv = "0.12.19"
-git-cliff = "2.13.1"
+git-cliff = "2.14.2"
 "pipx:ansible" = "13.8.0"
 "pipx:ansible-core" = "2.21.4"
 "pipx:ansible-lint" = "26.8.0"
