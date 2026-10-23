@@ -1,0 +1,11 @@
+[tools]
+uv = "0.13.5"
+"pipx:ansible" = "14.5.0"
+"pipx:ansible-core" = "2.21.5"
+"pipx:ansible-lint" = "26.10.1"
+
+[task_config]
+includes = [
+  "git::https://github.com/ckoliber/.github.git//base?ref=main",
+  "git::https://github.com/ckoliber/.github.git//ansible?ref=main",
+]
