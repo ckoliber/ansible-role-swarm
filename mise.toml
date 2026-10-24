@@ -4,6 +4,9 @@ uv = "0.13.5"
 "pipx:ansible-core" = "2.21.5"
 "pipx:ansible-lint" = "26.10.1"
 
+[settings]
+experimental = true
+
 [task_config]
 includes = [
   "git::https://github.com/ckoliber/.github.git//base?ref=main",
