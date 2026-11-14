@@ -1,4 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>ckoliber/.github//base/_", "github>ckoliber/.github//ansible/_"]
+  "extends": ["local>ckoliber/dotfiles"]
 }

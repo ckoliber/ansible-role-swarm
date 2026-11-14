@@ -6,12 +6,15 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
-    inputs: {}
 
 jobs:
   cicd:
-    uses: ckoliber/.github/.github/workflows/cicd.yml@main
+    uses: ckoliber/dotfiles/.github/workflows/mise.yml@main
     permissions:
       contents: write
     with:
-      tasks: "test"
+      fetch-depth: 0
+      cache-tools: uv,ansible
+      script: |
+        mise run ansible:lint
+        if [ "$GITHUB_EVENT_NAME" = push ]; then mise run release:cliff; fi
